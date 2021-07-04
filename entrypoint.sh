@@ -3,10 +3,16 @@
 set -x
 
 UPSTREAM_REPO=$1
+UPSTREAM_BRANCH=$2
 
 
 if [[ -z "$UPSTREAM_REPO" ]]; then
   echo "Missing \$UPSTREAM_REPO"
+  exit 1
+fi
+
+if [[ -z "$UPSTREAM_BRANCH" ]]; then
+  echo "Missing \$UPSTREAM_BRANCH"
   exit 1
 fi
 
@@ -16,6 +22,7 @@ if ! echo "$UPSTREAM_REPO" | grep '\.git'; then
 fi
 
 echo "UPSTREAM_REPO=$UPSTREAM_REPO"
+echo "UPSTREAM_BRANCH=$UPSTREAM_BRANCH"
 
 git clone "https://github.com/${GITHUB_REPOSITORY}.git" work
 cd work || { echo "Missing work dir" && exist 2 ; }
@@ -26,12 +33,12 @@ git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${G
 
 git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY_URL"
 git remote add upstream "$UPSTREAM_REPO"
-git fetch upstream 
+git fetch upstream $UPSTREAM_BRANCH:$UPSTREAM_BRANCH $UPSTREAM_BRANCH
 git remote -v
 
 git checkout master
 
-MERGE_RESULT=$(git merge upstream/master)
+MERGE_RESULT=$(git merge upstream/$UPSTREAM_BRANCH)
 if [[ $MERGE_RESULT != *"Already up to date."* ]]; then
   git commit -m "Merged upstream"  
   git push origin master

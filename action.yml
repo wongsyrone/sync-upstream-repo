@@ -1,10 +1,13 @@
-name: Sync and merge upstream repository with your current repository 
-description: Syncs and merges your current repository with the upstream repository. Greatly inspired by [actions-registry/github-repo-sync-upstream]. For details see README.md 
-author: Markus Heene 
+name: Fetch upstream Action
+description: Syncs and merges your current repository with the upstream repository.
+author: 135e2
 
 inputs:
   upstream_repo:
     description: URL of gitHub public upstream repo 
+    required: true
+  upstream_branch:
+    description: repo branch to fetch
     required: true
 
 runs:
@@ -12,6 +15,7 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.upstream_repo }}
+    - ${{ inputs.upstream_branch }}
 
 
 branding:
