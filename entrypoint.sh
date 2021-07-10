@@ -17,8 +17,8 @@ if [[ -z "$UPSTREAM_BRANCH" ]]; then
   exit 1
 fi
 
-if [[ -z "$LOCAL_REPO" ]]; then
-  echo "Missing \$LOCAL_REPO"
+if [[ -z "$LOCAL_BRANCH" ]]; then
+  echo "Missing \$LOCAL_BRANCH"
   exit 1
 fi
 
