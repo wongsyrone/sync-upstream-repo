@@ -17,10 +17,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: GitHub Sync to Upstream Repository
-      uses: mheene/sync-upstream-repo@v0.1.2
+    - name: Fetch upstream
+      uses: 135e2/sync-upstream-repo@v0.1.4
       with:
-      # GitHub public upstream repo
+      #Git upstream repo
         upstream_repo: https://github.com/holger24/AFD.git
         upstream_branch: master
         local_branch: master
