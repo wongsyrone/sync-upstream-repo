@@ -23,6 +23,7 @@ jobs:
       # GitHub public upstream repo
         upstream_repo: https://github.com/holger24/AFD.git
         upstream_branch: master
+        local_branch: master
 
 ```
 

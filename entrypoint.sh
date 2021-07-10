@@ -4,6 +4,7 @@ set -x
 
 UPSTREAM_REPO=$1
 UPSTREAM_BRANCH=$2
+LOCAL_BRANCH=$3
 
 
 if [[ -z "$UPSTREAM_REPO" ]]; then
@@ -16,6 +17,11 @@ if [[ -z "$UPSTREAM_BRANCH" ]]; then
   exit 1
 fi
 
+if [[ -z "$LOCAL_REPO" ]]; then
+  echo "Missing \$LOCAL_REPO"
+  exit 1
+fi
+
 
 if ! echo "$UPSTREAM_REPO" | grep '\.git'; then
   UPSTREAM_REPO="https://github.com/${UPSTREAM_REPO_PATH}.git"
@@ -23,6 +29,7 @@ fi
 
 echo "UPSTREAM_REPO=$UPSTREAM_REPO"
 echo "UPSTREAM_BRANCH=$UPSTREAM_BRANCH"
+echo "LOCAL_REPO=$LOCAL_REPO"
 
 git clone "https://github.com/${GITHUB_REPOSITORY}.git" work
 cd work || { echo "Missing work dir" && exist 2 ; }
@@ -36,12 +43,12 @@ git remote add upstream "$UPSTREAM_REPO"
 git fetch upstream $UPSTREAM_BRANCH:$UPSTREAM_BRANCH $UPSTREAM_BRANCH
 git remote -v
 
-git checkout master
+git checkout $LOCAL_REPO
 
 MERGE_RESULT=$(git merge upstream/$UPSTREAM_BRANCH)
 if [[ $MERGE_RESULT != *"Already up to date."* ]]; then
   git commit -m "Merged upstream"  
-  git push origin master
+  git push origin $LOCAL_REPO
 fi
 
 cd ..

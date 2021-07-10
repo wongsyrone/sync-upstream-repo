@@ -9,6 +9,9 @@ inputs:
   upstream_branch:
     description: repo branch to fetch
     required: true
+  local_branch:
+    description: local repo branch
+    required: true
 
 runs:
   using: 'docker'
@@ -16,6 +19,7 @@ runs:
   args:
     - ${{ inputs.upstream_repo }}
     - ${{ inputs.upstream_branch }}
+    - ${{ inputs.local_branch }}
 
 
 branding:
