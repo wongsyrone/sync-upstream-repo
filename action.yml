@@ -12,6 +12,9 @@ inputs:
   local_branch:
     description: local repo branch
     required: true
+  github_token:
+    description: github push token
+    required: true
 
 runs:
   using: 'docker'
@@ -20,6 +23,7 @@ runs:
     - ${{ inputs.upstream_repo }}
     - ${{ inputs.upstream_branch }}
     - ${{ inputs.local_branch }}
+    - ${{ inputs.github_token }}
 
 
 branding:
