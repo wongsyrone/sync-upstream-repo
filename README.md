@@ -18,12 +18,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Fetch upstream
-      uses: 135e2/sync-upstream-repo@v0.1.4-hotfix
+      uses: 135e2/sync-upstream-repo@v0.1.5
       with:
       #Git upstream repo
         upstream_repo: https://github.com/holger24/AFD.git
         upstream_branch: master
         local_branch: master
+	github_token: ${{ secrets.GITHUB_TOKEN }}
 
 ```
 
