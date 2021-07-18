@@ -40,7 +40,7 @@ git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${G
 
 git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY_URL"
 git remote add upstream "$UPSTREAM_REPO"
-git fetch upstream $UPSTREAM_BRANCH:$UPSTREAM_BRANCH $UPSTREAM_BRANCH
+git fetch upstream #$UPSTREAM_BRANCH:$UPSTREAM_BRANCH $UPSTREAM_BRANCH
 git remote -v
 
 git checkout $LOCAL_REPO
