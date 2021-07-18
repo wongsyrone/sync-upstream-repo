@@ -29,7 +29,7 @@ fi
 
 echo "UPSTREAM_REPO=$UPSTREAM_REPO"
 echo "UPSTREAM_BRANCH=$UPSTREAM_BRANCH"
-echo "LOCAL_REPO=$LOCAL_REPO"
+echo "LOCAL_BRANCH=$LOCAL_BRANCH"
 
 git clone "https://github.com/${GITHUB_REPOSITORY}.git" work
 cd work || { echo "Missing work dir" && exist 2 ; }
@@ -43,12 +43,12 @@ git remote add upstream "$UPSTREAM_REPO"
 git fetch upstream #$UPSTREAM_BRANCH:$UPSTREAM_BRANCH $UPSTREAM_BRANCH
 git remote -v
 
-git checkout $LOCAL_REPO
+git checkout $LOCAL_BRANCH
 
 MERGE_RESULT=$(git merge upstream/$UPSTREAM_BRANCH)
 if [[ $MERGE_RESULT != *"Already up to date."* ]]; then
   git commit -m "Merged upstream"  
-  git push origin $LOCAL_REPO
+  git push origin $LOCAL_BRANCH
 fi
 
 cd ..
