@@ -1,6 +1,6 @@
-name: Fetch upstream Action
-description: Syncs and merges your current repository with the upstream repository.
-author: 135e2
+name: Fetch upstream Action(rebase)
+description: Syncs and rebase your current repository with the upstream repository.
+author: tjusl
 
 inputs:
   upstream_repo:
