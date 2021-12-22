@@ -45,9 +45,9 @@ git remote -v
 
 git checkout $LOCAL_BRANCH
 
-MERGE_RESULT=$(git merge upstream/$UPSTREAM_BRANCH)
+MERGE_RESULT=$(git rebase upstream/$UPSTREAM_BRANCH)
 if [[ $MERGE_RESULT != *"Already up to date."* ]]; then
-  git commit -m "Merged upstream"  
+  git commit -m "Rebase upstream"  
   git push origin $LOCAL_BRANCH
 fi
 
