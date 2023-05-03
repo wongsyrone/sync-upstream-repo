@@ -15,6 +15,14 @@ inputs:
   github_token:
     description: github push token
     required: true
+  git_clone_depth:
+    description: git clone depth for working target repo
+    required: false
+    default: 100
+  git_fetch_depth:
+    description: git fetch depth for target upstream repo
+    required: false
+    default: 100
 
 runs:
   using: 'docker'
@@ -24,6 +32,8 @@ runs:
     - ${{ inputs.upstream_branch }}
     - ${{ inputs.local_branch }}
     - ${{ inputs.github_token }}
+    - ${{ inputs.git_clone_depth }}
+    - ${{ inputs.git_fetch_depth }}
 
 
 branding:
